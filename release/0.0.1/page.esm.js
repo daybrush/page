@@ -192,12 +192,14 @@ function (_super) {
       if (!state.firstEnter) {
         state.firstEnter = true;
         /**
+         * An event that occurs when you first enter a page.
          * @event Page#firstEnter
          */
 
         this.triggerEvent("firstEnter");
       }
       /**
+       * An event that occurs when you enter a page.
        * @event Page#enter
        */
 
@@ -219,12 +221,14 @@ function (_super) {
       if (!state.firstExit) {
         state.firstExit = true;
         /**
+         * An event that occurs when you first exit a page.
          * @event Page#firstExit
          */
 
         this.triggerEvent("firstExit");
       }
       /**
+       * An event that occurs when you exit a page.
        * @event Page#exit
        */
 

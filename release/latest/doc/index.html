@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/daybrush.css">
+    <link type="text/css" rel="stylesheet" href="styles/custom.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="description" content="Home - Documentation"/>
+
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h2 class="custom"><a href="https://github.com/daybrush/page" target="_blank" class="menu-item" id="repository" >Github repo</a></h2><div class="search"><div class="input-area"><input type="text"/></div><button></button></div><ul class="classes"><li file="page" class="parent"><a href="Page.html">Page</a><h4><a href="Page.html#methods">Methods</a></h4><ul class='methods'><li data-type='method'><a href="Page.html#add">add</a></li><li data-type='method'><a href="Page.html#hasOn">hasOn</a></li><li data-type='method'><a href="Page.html#off">off</a></li><li data-type='method'><a href="Page.html#on">on</a></li><li data-type='method'><a href="Page.html#once">once</a></li><li data-type='method'><a href="Page.html#range">range</a></li><li data-type='method'><a href="Page.html#resize">resize</a></li><li data-type='method'><a href="Page.html#scroll">scroll</a></li><li data-type='method'><a href="Page.html#trigger">trigger</a></li></ul><h4><a href="Page.html#events">Events</a></h4><ul class='events'><li data-type='event'><a href="Page.html#event:enter">enter</a></li><li data-type='event'><a href="Page.html#event:exit">exit</a></li><li data-type='event'><a href="Page.html#event:firstEnter">firstEnter</a></li><li data-type='event'><a href="Page.html#event:firstExit">firstExit</a></li></ul><h4><a href="Page.html#type definitions">Type Definitions</a></h4><ul class='type definitions'><li data-type='typddef'><a href="Page.html#.PageOptions">PageOptions</a></li><li data-type='typddef'><a href="Page.html#.PageState">PageState</a></li><li data-type='typddef'><a href="Page.html#.Rect">Rect</a></li></ul></li><li file="pages" class="parent"><a href="Pages.html">Pages</a><h4><a href="Pages.html#methods">Methods</a></h4><ul class='methods'><li data-type='method'><a href="Pages.html#add">add</a></li><li data-type='method'><a href="Pages.html#hasOn">hasOn</a></li><li data-type='method'><a href="Pages.html#off">off</a></li><li data-type='method'><a href="Pages.html#on">on</a></li><li data-type='method'><a href="Pages.html#once">once</a></li><li data-type='method'><a href="Pages.html#range">range</a></li><li data-type='method'><a href="Pages.html#resize">resize</a></li><li data-type='method'><a href="Pages.html#scroll">scroll</a></li><li data-type='method'><a href="Pages.html#trigger">trigger</a></li></ul><h4><a href="Pages.html#events">Events</a></h4><ul class='events'><li data-type='event'><a href="Pages.html#event:enter">enter</a></li><li data-type='event'><a href="Pages.html#event:exit">exit</a></li><li data-type='event'><a href="Pages.html#event:firstEnter">firstEnter</a></li><li data-type='event'><a href="Pages.html#event:firstExit">firstExit</a></li></ul></li><li file="component" class="parent"><a href="eg.Component.html">eg.Component</a><h4><a href="eg.Component.html#static members">Static Members</a></h4><ul class='static members'><li data-type='member'><a href="eg.Component.html#.VERSION">VERSION</a></li></ul><h4><a href="eg.Component.html#methods">Methods</a></h4><ul class='methods'><li data-type='method'><a href="eg.Component.html#hasOn">hasOn</a></li><li data-type='method'><a href="eg.Component.html#off">off</a></li><li data-type='method'><a href="eg.Component.html#on">on</a></li><li data-type='method'><a href="eg.Component.html#once">once</a></li><li data-type='method'><a href="eg.Component.html#trigger">trigger</a></li></ul></li></ul><ul class="global"><li file="global"  class="parent"><a href="global.html">Global</a><h4><a href="global.html#methods">Methods</a></h4><ul class='methods'><li data-type='method'><a href="global.html#isUndefined">isUndefined</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>@daybrush/page  <a href="https://badge.fury.io/js/%40daybrush%2Fpage"><img src="https://badge.fury.io/js/%40daybrush%2Fpage.svg" alt="npm version"></a></h1>
+<p>You can check the page in and out of the screen.</p>
+<p>Setting the range allows you to check in and out of the range.</p>
+<p><a href="https://daybrush.com/page/release/latest/doc/index.html"><strong>API Documentation</strong></a></p>
+<pre class="prettyprint source"><code>$ npm i @daybrush/page
+</code></pre>
+<pre class="prettyprint source lang-js"><code>import Page from &quot;@daybrush/page&quot;;
+
+const pages = new Page.s({
+  events: [&quot;resize&quot;, &quot;scroll&quot;],
+});
+
+const page1 = new Page(&quot;.page1&quot;);
+
+page1.on({
+  &quot;enter&quot;: e => {
+    e.target.classList.add(&quot;enter&quot;);
+  },
+  &quot;exit&quot;: e => {
+    e.target.classList.remove(&quot;enter&quot;);
+  },
+});
+
+const page2 = new Page(&quot;.page2&quot;);
+
+page2.on({
+  &quot;enter&quot;: e => {
+    e.target.classList.add(&quot;enter&quot;);
+  },
+  &quot;exit&quot;: e => {
+    e.target.classList.remove(&quot;enter&quot;);
+  },
+});
+page2.range([&quot;100% - 80&quot;, &quot;100%&quot;]).on({
+  &quot;enter&quot;: e => {
+    utils.addClass(header, &quot;white&quot;);
+  },
+  &quot;exit&quot;: e => {
+    utils.removeClass(header, &quot;white&quot;);
+  },
+});
+pages.add(page1);
+pages.add(page2);
+
+pages.scroll();
+</code></pre></article>
+    </section>
+
+
+
+
+
+
+
+<style>
+
+nav>.search+ul li:first-child:after {
+    display: none;
+}
+nav>.search+ul li:first-child h4, nav>.search+ul li:first-child ul {
+    display: block;
+}
+
+
+nav li[file="home"]:after {
+    display: none;
+}
+nav li[file="home"] h4, nav li[file="home"] ul {
+    display: block;
+}
+</style>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/daybrush/jsdoc">JSDoc 0.3.3</a> on Sun Feb 10 2019 19:34:19 GMT+0900 (Korean Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/utils.min.js"></script>
+<script src="scripts/search.js"></script>
+</body>
+</html>

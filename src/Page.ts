@@ -220,7 +220,9 @@ class Page extends Component {
       return prev + cur;
     }, 0);
   }
-  public getRect(isAbsolute?: boolean) {
+  /**
+   */
+  public getRect(isAbsolute?: boolean): Rect | undefined {
     const rect = this.el ? this.el.getBoundingClientRect() : undefined;
 
     if (!rect) {

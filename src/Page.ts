@@ -220,16 +220,25 @@ class Page extends Component {
       return prev + cur;
     }, 0);
   }
-  public onCheck(rect: Rect | undefined = this.el ? this.el.getBoundingClientRect() : undefined) {
-    if (rect) {
-      const top = rect.top;
-      const height = rect.height;
-      const obj = {top, height};
+  public getRect(isAbsolute?: boolean) {
+    const rect = this.el ? this.el.getBoundingClientRect() : undefined;
 
-      const rangeStart = this.calcSize(this._range[0], obj);
-      const rangeEnd = this.calcSize(this._range[1], obj);
-      const marginTop = this.calcSize(this.margin[0], obj);
-      const marginBottom = this.calcSize(this.margin[1], obj);
+    if (!rect) {
+      return;
+    }
+    const top = rect.top + (isAbsolute ? document.body.scrollTop || document.documentElement.scrollTop : 0);
+    const height = rect.height;
+
+    return {top, height};
+  }
+  public onCheck(rect: Rect | undefined = this.getRect()) {
+    if (rect) {
+      const {top} = rect;
+
+      const rangeStart = this.calcSize(this._range[0], rect);
+      const rangeEnd = this.calcSize(this._range[1], rect);
+      const marginTop = this.calcSize(this.margin[0], rect);
+      const marginBottom = this.calcSize(this.margin[1], rect);
 
       if (top + rangeEnd + marginBottom <= 0 || top + rangeStart - marginTop >= WindowSize.height) {
         this.onExit();

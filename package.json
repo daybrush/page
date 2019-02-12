@@ -1,6 +1,6 @@
 {
   "name": "@daybrush/page",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "You can check the page in and out of the screen.",
   "main": "dist/page.main.js",
   "module": "dist/page.esm.js",

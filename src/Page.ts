@@ -119,12 +119,14 @@ class Page extends Component {
    * @method
    */
   public scroll = () => {
+    this.triggerEvent("scroll");
     this.onCheck();
   }
   /**
    * @method
    */
   public resize = () => {
+    this.triggerEvent("resize");
     this.onCheck();
   }
   public triggerEvent(name: string) {

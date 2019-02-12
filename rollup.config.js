@@ -58,7 +58,7 @@ export default [
       file: `./dist/page.esm.js`,
     },
   }, {
-    input: 'src/index.ts',
+    input: 'src/index.umd.ts',
     plugins: [...plugins, ],
     external: ["@egjs/component"],
     output: {
@@ -72,7 +72,7 @@ export default [
       file: `./dist/page.main.js`,
     },
   }, {
-    input: 'src/index.ts',
+    input: 'src/index.umd.ts',
     plugins: [...plugins, resolvePlugin, ],
     output: {
       ...output,
@@ -82,7 +82,7 @@ export default [
       file: `./dist/page.js`,
     },
   }, {
-    input: 'src/index.ts',
+    input: 'src/index.umd.ts',
     plugins: [...plugins, resolvePlugin, uglifyCode],
     output: {
       ...output,

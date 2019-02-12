@@ -25,7 +25,8 @@ export interface PageState {
  * @typedef
  */
 export interface PageOptions {
-  range?: Array<number | string>;
+  horizontal?: boolean;
+  range?: number | string | Array<number | string>;
   margin?: number | string |  Array<number | string>;
   events?: string[];
 }
@@ -35,7 +36,9 @@ export interface PageOptions {
  */
 export interface Rect {
   top: number;
+  left: number;
   height: number;
+  width: number;
 }
 /**
  * You can check the page in and out of the screen.
@@ -53,6 +56,7 @@ class Page extends Component {
   public static s: typeof Pages;
   private ranges: IObject<Page> = {};
   private _range: Array<string | number> = [0, "100%"];
+  private horizontal: boolean = false;
   private margin: Array<string | number> = [0, 0];
   private pages: Page[] = [];
   private el: Element | null;
@@ -68,7 +72,10 @@ class Page extends Component {
 
     this.el = el ? (isObject(el) ? el : $(el)) : null;
     if ("range" in options) {
-      this._range = options.range!;
+      const range = options.range!;
+      const rangeArr = isArray(range) ? range : [range, range];
+
+      this._range = rangeArr;
     }
     if ("margin" in options) {
       const margin = options.margin!;
@@ -90,6 +97,9 @@ class Page extends Component {
         }
       });
     }
+    if ("horizontal" in options) {
+      this.horizontal = options.horizontal!;
+    }
   }
   /**
    */
@@ -100,7 +110,7 @@ class Page extends Component {
   }
   /**
    */
-  public range(range: Array<string | number> | number | string = [0, "100%"]) {
+  public range(range: Array<string | number> | number | string = [0, "100%"], horizontal?: boolean) {
     const rangeArr = isArray(range) ? range : [range, range];
     const id = `[${rangeArr.join(",")}]`;
 
@@ -109,6 +119,7 @@ class Page extends Component {
     }
     const page = new Page(this.el!, {
       range: rangeArr,
+      horizontal: horizontal!,
     });
 
     this.ranges[id] = page;
@@ -230,21 +241,25 @@ class Page extends Component {
     if (!rect) {
       return;
     }
-    const top = rect.top + (isAbsolute ? document.body.scrollTop || document.documentElement.scrollTop : 0);
+    const width = rect.width;
     const height = rect.height;
+    const left = rect.left + (isAbsolute ? document.body.scrollLeft || document.documentElement.scrollLeft : 0);
+    const top = rect.top + (isAbsolute ? document.body.scrollTop || document.documentElement.scrollTop : 0);
 
-    return {top, height};
+    return {top, left, width, height};
   }
   public onCheck(rect: Rect | undefined = this.getRect()) {
     if (rect) {
-      const {top} = rect;
+      const horizontal = this.horizontal;
+      const pos = rect[horizontal ? "left" : "top"];
+      const containerSize =  WindowSize[horizontal ? "width" : "height"];
 
       const rangeStart = this.calcSize(this._range[0], rect);
       const rangeEnd = this.calcSize(this._range[1], rect);
-      const marginTop = this.calcSize(this.margin[0], rect);
-      const marginBottom = this.calcSize(this.margin[1], rect);
+      const marginStart = this.calcSize(this.margin[0], rect);
+      const marginEnd = this.calcSize(this.margin[1], rect);
 
-      if (top + rangeEnd + marginBottom <= 0 || top + rangeStart - marginTop >= WindowSize.height) {
+      if (pos + rangeEnd + marginEnd <= 0 || pos + rangeStart - marginStart >= containerSize) {
         this.onExit();
       } else {
         this.onEnter(rect);
@@ -262,8 +277,11 @@ class Page extends Component {
     if (typeof size === "number") {
       return size;
     }
+    const horizontal = this.horizontal;
+    const sizeName = horizontal ? "width" : "height";
+
     if (size === "window") {
-      return WindowSize.height;
+      return WindowSize[sizeName];
     }
     if (size.indexOf("(") > -1) {
       return this.calcSize(splitBracket(size).value!, rect);
@@ -271,7 +289,7 @@ class Page extends Component {
     const info = splitUnit(size);
 
     if (info.unit === "%") {
-      return rect.height * info.value / 100;
+      return rect[sizeName] * info.value / 100;
     } else {
       return info.value;
     }
